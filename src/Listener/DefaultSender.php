@@ -100,7 +100,7 @@ class DefaultSender extends BaseListener {
           // these are socket write errors which most likely means smtp connection errors
           // lets skip them and reconnect.
           $smtpConnectionErrors++;
-          if ($smtpConnectionErrors <= 5) {
+          if ($smtpConnectionErrors <= 500) {
             $mailer->disconnect();
             $retryBatch = TRUE;
             continue;
