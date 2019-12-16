@@ -56,7 +56,6 @@ class DefaultSender extends BaseListener {
 
       $headers = $message->headers();
       $result = $mailer->send($headers['To'], $message->headers(), $message->get());
-
       if ($job_date) {
         unset($errorScope);
       }
