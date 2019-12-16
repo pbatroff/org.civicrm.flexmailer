@@ -166,6 +166,12 @@ class DefaultSender extends BaseListener {
       return FALSE;
     }
 
+    // Workaround for wrongly reported SMTP error 450
+    if ($code === '450') {
+      \CRM_Core_Error::debug_log_message("[SYSTOPIA DEBUG] received smtp-450. bounce handling. Error Message: " . $message);
+      return FALSE;
+    }
+
     if (strpos($message, 'Failed to set sender') !== FALSE) {
       return TRUE;
     }
